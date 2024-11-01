@@ -10,7 +10,6 @@ import Foundation
 struct User: Codable{
     let status: String
     let pointsAcquired: Int
-    let mostPurchased: String
-
+    let mostPurchased: String?
 }
 

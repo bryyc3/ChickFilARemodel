@@ -9,12 +9,13 @@ import SwiftUI
 
 struct MenuView: View {
     @State private var menuItems: [MenuItem]?
+    @Binding var user: User?
     
     var body: some View {
         if let menu = menuItems {
             VStack {
                 ForEach(menu, id: \.item){item in
-                    MenuItemView(itemObj: item)
+                    MenuItemView(itemObj: item, user: $user)
                 }
             }
         } else {

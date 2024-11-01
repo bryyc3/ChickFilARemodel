@@ -49,4 +49,5 @@ func maxMemberPoints(memberStatus: String) -> Int{
     else {
         return silver
     }
-}
+}//determine points needed to reach next member status
+ //displayed at the end of progress bar 

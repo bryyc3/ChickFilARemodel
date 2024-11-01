@@ -22,16 +22,16 @@ func getUserData() async throws -> User{
     do{
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
-        let userData: User = try decoder.decode(User.self, from: data)
+        let userData = try decoder.decode(User.self, from: data)
         return userData
     } catch{
         throw UserDataError.decodingError
     }
 }//fetch user data
 
-func userPurchase(item: MenuItem) async throws {
+
+func userPurchase(item: MenuItem) async throws -> User {
     let endpoint = "http://localhost:8080/purchase"
-    
     guard let url = URL(string: endpoint) else{
         throw UserDataError.invalidURL
     }
@@ -43,23 +43,21 @@ func userPurchase(item: MenuItem) async throws {
     
     request.httpBody = try? JSONSerialization.data(withJSONObject: body, options: .fragmentsAllowed)
     
+    let (data,response) = try await URLSession.shared.data(for: request)
     
-    let task = URLSession.shared.dataTask(with: request) {data, _, error in
-        guard let data = data, error == nil else{
-            return
-        }
-        do{
-            let decoder = JSONDecoder()
-            decoder.keyDecodingStrategy = .convertFromSnakeCase
-            let userData: User = try decoder.decode(User.self, from: data)
-            print( userData)
-        } catch{
-            print(error)
-        }
-        
+    guard let response = response as? HTTPURLResponse, response.statusCode == 200 else{
+        throw UserDataError.invalidResponse
     }
-    task.resume()
-}//simulate a user purchasing an item and reflect the changes within user class
+    
+    do{
+        let decoder = JSONDecoder()
+        decoder.keyDecodingStrategy = .convertFromSnakeCase
+        let userData = try decoder.decode(User.self, from: data)
+        return userData
+    } catch{
+        throw UserDataError.decodingError
+    }
+}//simulate a user purchasing an item and reflect the changes to user points
     
 enum UserDataError: Error{
     case invalidURL

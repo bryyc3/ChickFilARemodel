@@ -8,10 +8,12 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State var userData: User?
+    
     var body: some View {
-        MemberStatusView()
+        MemberStatusView(userInfo: $userData)
         ScrollView{
-            MenuView()
+            MenuView(user: $userData)
         }
         .padding()
     }
