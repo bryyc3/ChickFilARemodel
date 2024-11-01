@@ -1,9 +1,3 @@
-//
-//  README.md
-//  ChickFilARemodel
-//
-//  Created by Bryce King on 11/1/24.
-//
 
 # Chick-Fil-A Rewards Remodel
 
