@@ -16,7 +16,7 @@ struct MenuItemView: View{
             Image("\(itemObj.picture)")
                 .resizable()
                 .scaledToFit()
-                .frame(width: 170, height: 170)
+                .frame(width: 150, height: 150)
             VStack{
                 Text("\(itemObj.item)")
                     .frame(maxWidth: 170, alignment: .center)

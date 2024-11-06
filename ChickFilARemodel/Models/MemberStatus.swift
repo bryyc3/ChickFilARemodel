@@ -12,7 +12,13 @@ func calcStatusPrecent(pts: Int, width: CGFloat) -> CGFloat{
     var statusPercent: Float
     var percent: CGFloat
     
-    if (pts >= 5000 && pts < 10000){
+    if (pts >= 5000){
+        if(pts >= 10000){
+            statusPercent = Float(10000)/10000
+            statusPercent = statusPercent * 100
+            percent = CGFloat(statusPercent)
+            return percent * multiplier
+        }//return the same bar percentage once max member status is reached 
         statusPercent = Float(pts)/10000
         statusPercent = statusPercent * 100
         percent = CGFloat(statusPercent)

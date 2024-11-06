@@ -13,7 +13,7 @@ struct MenuView: View {
     
     var body: some View {
         if let menu = menuItems {
-            VStack {
+            ScrollView {
                 ForEach(menu, id: \.item){item in
                     MenuItemView(itemObj: item, user: $user)
                 }

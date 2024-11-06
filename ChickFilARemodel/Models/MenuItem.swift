@@ -9,7 +9,4 @@ import Foundation
 struct MenuItem: Codable{
     let item: String
     let picture: String
-    let tier: String
-    let category: String
-    let pointsWorth: Int
 }
