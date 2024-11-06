@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct OperatorView: View {
-    @Binding var rewards: [MenuItem]?
+    @Binding var rewards: [RewardItem]?
     
     var body: some View {
         Button("Send Reward"){

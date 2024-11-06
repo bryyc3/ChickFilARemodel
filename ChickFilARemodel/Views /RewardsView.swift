@@ -8,17 +8,20 @@
 import SwiftUI
 
 struct RewardsView: View {
-    @Binding var rewardData: [MenuItem]?
+    @Binding var rewardData: [RewardItem]?
     
     var body: some View {
         if let rewards = rewardData {
-            ScrollView {
-                ForEach(rewards, id: \.item){item in
-                    RewardItemView(itemObj: item)
+            if (rewards.count > 0){
+                ScrollView {
+                    ForEach(rewards, id: \.item){item in
+                        RewardItemView(rewards: $rewardData, itemObj: item)
+                    }
                 }
+            } else {
+                Text("No Rewards Available")
             }
-        } else {
-            Text("No Rewards Available")
+            
         }
     }
 }

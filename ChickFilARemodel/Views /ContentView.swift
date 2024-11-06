@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State var userRewards: [MenuItem]?
+    @State var userRewards: [RewardItem]?
     
     var body: some View {
         TabView{
